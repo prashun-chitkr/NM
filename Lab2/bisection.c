@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define F(x) (x*x + 2*x - 4)
+#define F(x) (exp(-x) * (3.2*sin(x) - 0.5*cos(x)))
 #define PRECISION 0.000001
 
 int main(){;
@@ -14,6 +14,7 @@ int main(){;
     while(b - a > PRECISION){
             m = (a+b) / 2;
             y_a = F(a);
+            y_b = F(b);
             y_m = F(m);
             if(y_b * y_m >= 0)
                 b = m;
