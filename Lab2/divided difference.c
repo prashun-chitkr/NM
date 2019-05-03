@@ -11,8 +11,6 @@ int main(){
         for(j=0; j<4; j++){
             if(j<5-k)
                 denum[i][j] = x[j+k] - x[j];
-            else
-                denum[i][j] = -1;
         }
         ++k;
     }
@@ -25,8 +23,6 @@ int main(){
                 d[0][j] = (y[j+1] - y[j]) / denum[0][j];
             else if(j < 4-k)
                 d[i][j] = (d[i-1][j+1]-d[i-1][j]) / denum[i][j];
-            else
-                d[i][j] = -1;
         }
         ++k;
     }
@@ -37,12 +33,10 @@ int main(){
         if(i%2==0){
             printf("%d\t%d\t", x[i/2], y[i/2]);
             for(j = 0; j < 4; j++){
-                if((i==2||i==4||i==6) && j==1){
+                if((i==2||i==4||i==6) && j==1)
                     printf("\t%d\t", d[1][i/2-1]);
-                }
-                else if(i==4 && j == 3){
+                else if(i==4 && j == 3)
                     printf("\t%d", d[3][0]);
-                }
             }
         }
         else{
