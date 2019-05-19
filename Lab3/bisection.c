@@ -2,20 +2,19 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define F(x) (x*x*x + x*x + x + 7)
-#define PRECISION 0.0001
+#define F(x) ((1-pow((1+x), 4))/x - 1)
 
 int main(){;
-    double a, b, m, y_a, y_m, y_b, tmp;
-    int i=1, iterations;
-
-    printf("-------------------\n");
+    double a, b, m, y_a, y_m, y_b, tmp, tol;
+    int i=1;
 
     do{
         a = b = 0.0;
         printf("Enter range: ");
         scanf("%lf %lf", &a, &b);
-    }while((F(a)*F(b))>0);
+        y_a = F(a);
+        y_b = F(b);
+    }while(y_a*y_b >0);
 
     if(a>b){
         tmp = a;
@@ -23,33 +22,30 @@ int main(){;
         b = tmp;
     }
     
-    printf("-------------------\n");
-
-    iterations = (int)(log10(b-a) - log10(PRECISION))/log10(2) + 1;
-    printf("Iterations: %d\n", iterations);
+    printf("Enter tolerance: ");
+    scanf("%lf", &tol);
     
-    printf("------------------------------------------------------------------------\n");
+    m = (a+b)/2;
+    y_m = F(m);
 
-    printf("| n    | %-7c | %-7c | %-7.9s | %-7.9s  | %-7c | %-7.9s    |\n", 'a', 'b', "F(a)", "F(b)", 'x', "F(x)");
 
-    printf("------------------------------------------------------------------------\n");
-
-    while(i <= iterations){
+    printf("%3c%12c%12c%12s%12s%12c%12s\n", 'n', 'a', 'b', "F(a)", "F(b)", 'x', "F(x)");
+    while(fabs((a-b)/m) > tol){
             m = (a+b) / 2;
-            y_a = F(a);
-            y_b = F(b);
             y_m = F(m);
-            printf("| %3d. | %7.4f | %7.4f | %7.4f | %7.4f | %7.4f | %8.4f   |\n", i, a, b, y_a, y_b, m, y_m);
-            if(y_b * y_m >= 0)
+            printf("%3d.%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f\n", i, a, b, y_a, y_b, m, y_m);
+            if(y_b * y_m >= 0){
                 b = m;
-            else if(y_a * y_m >=0)
+                y_b = y_m;
+            }
+            else if(y_a * y_m >=0){
                 a = m;
+                y_a = y_m;
+            }
             ++i;
     }
-    printf("------------------------------------------------------------------------\n");
     
-    printf("Approx Solution: %4.3lf\n", (a+b)/2);
+    printf("Approx Solution: %.3lf\n", (a+b)/2);
 
-    printf("-------------------------------\n");
     return 0;
 }

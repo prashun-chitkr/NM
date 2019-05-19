@@ -13,12 +13,11 @@ int main(){
         xy[2][i] = log(xy[1][i]);
         xy[3][i] = xy[0][i] * xy[0][i];
         xy[4][i] = xy[0][i] * xy[2][i];
-        xy[0][4] += xy[0][i];
-        xy[1][4] += xy[1][i];
-        xy[2][4] += xy[2][i];
-        xy[3][4] += xy[3][i];
-        xy[4][4] += xy[4][i];
     }
+    
+    for(i=0; i<5; i++)
+        for(j=0; j<4; j++)
+            xy[i][4]+=xy[i][j];
     
     printf("x\ty\tln(y)\tx*x\tx*ln(y)\n");
     for(i = 0; i < 5; i++){

@@ -8,10 +8,8 @@ int main(){
 
 
 	for(i = 0; i<4 ; i++){
-		for(j=0; j<4; j++){
-			if(j<5-k)
-				denum[i][j] = x[j+k] - x[j];
-		}
+		for(j=0; j<5-k; j++)
+			denum[i][j] = x[j+k] - x[j];
 		++k;
 	}
 
@@ -27,7 +25,7 @@ int main(){
 		++k;
 	}
 
-	printf("x\ty\tdd1\tdd2\tdd3\tdd4\n\n");
+	printf("x\ty\tIDD\tIIDD\tIIIDD\tIVDD\n\n");
 
 	for(i = 0; i < 9; i++){
 		if(i%2==0){
