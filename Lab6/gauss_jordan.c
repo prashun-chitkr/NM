@@ -11,7 +11,7 @@ void display(float arr[10][10], int n){
 }
 
 int main(){
-    float coeff[10][10], ratio, temp;
+    float coeff[10][10], temp;
     int i, j, k, n;
 
     printf("Enter the number of equiation: ");
