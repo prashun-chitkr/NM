@@ -21,10 +21,8 @@ float max(float mat[10], int n){
 bool compare(float mat[10], float mat_old[10], float val, float val_old, float e, int n){
     bool matrix = abs(mat_old[0] - mat[0]) < e;
     bool value = fabs(val_old-val) < e;
-    for(int i=0; i<n; i++){
+    for(int i=0; i<n; i++)
         matrix = (fabs(mat_old[i] - mat[i]) < e) && matrix;
-
-    }
     return matrix && value;
 }
 
