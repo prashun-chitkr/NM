@@ -22,13 +22,13 @@ int main(){
     for(i=0; i<n; i++)
         for(j=0; j<n+1; j++)
             scanf("%f", &coeff[i][j]);
-    
     printf("Entered matrix is:");
     display(coeff, n);
     
     /* Elimination */
     for(i=0; i<n; i++){
         temp = coeff[i][i];
+        printf("\nOperating R%d->R%d/%f\n", i+1, i+1, temp);
         for(j=0; j<n+1; j++)
             coeff[i][j] /= temp;
         
@@ -38,6 +38,7 @@ int main(){
             if(i==j)
                 continue;
             temp = coeff[j][i];
+            printf("\nOperating R%d->R%d-(%f)*R%d\n", j+1, j+1, temp, i+1);
             for(k=0; k<n+1; k++)
                 coeff[j][k] -= temp*coeff[i][k];            
         }
